@@ -36,36 +36,55 @@ const c6 = document.getElementById("C6")
 const d6 = document.getElementById("D6")
 const e6 = document.getElementById("E6")
 const f6 = document.getElementById("F6")
-const a7 = document.getElementById("A7")
-const b7 = document.getElementById("B7")
-const c7 = document.getElementById("C7")
-const d7 = document.getElementById("D7")
-const e7 = document.getElementById("E7")
-const f7 = document.getElementById("F7")
-const a8 = document.getElementById("A8")
-const b8 = document.getElementById("B8")
-const c8 = document.getElementById("C8")
-const d8 = document.getElementById("D8")
-const e8 = document.getElementById("E8")
-const f8 = document.getElementById("F8")
-const a9 = document.getElementById("A9")
-const b9 = document.getElementById("B9")
-const c9 = document.getElementById("C9")
-const d9 = document.getElementById("D9")
-const e9 = document.getElementById("E9")
-const f9 = document.getElementById("F9")
-const a10 = document.getElementById("A10")
-const b10 = document.getElementById("B10")
-const c10 = document.getElementById("C10")
-const d10 = document.getElementById("D10")
-const e10 = document.getElementById("E10")
-const f10 = document.getElementById("F10")
 
 // things that will fill the top of main
 
 const promptSection = document.getElementById("prompts")
 const promptText = document.createElement("h2")
 promptSection.appendChild(promptText)
+
+// create game object to store data on status of all tiles
+
+const game = {
+    tiles: [
+        { "title" : "a1", "display" : "empty", contents : "empty" },
+        { "title" : "b1", "display" : "empty", contents : "empty" },
+        { "title" : "c1", "display" : "empty", contents : "empty" },
+        { "title" : "d1", "display" : "empty", contents : "empty" },
+        { "title" : "e1", "display" : "empty", contents : "empty" },
+        { "title" : "f1", "display" : "empty", contents : "empty" },
+        { "title" : "a2", "display" : "empty", contents : "empty" },
+        { "title" : "b2", "display" : "empty", contents : "empty" },
+        { "title" : "c2", "display" : "empty", contents : "empty" },
+        { "title" : "d2", "display" : "empty", contents : "empty" },
+        { "title" : "e2", "display" : "empty", contents : "empty" },
+        { "title" : "f2", "display" : "empty", contents : "empty" },
+        { "title" : "a3", "display" : "empty", contents : "empty" },
+        { "title" : "b3", "display" : "empty", contents : "empty" },
+        { "title" : "c3", "display" : "empty", contents : "empty" },
+        { "title" : "d3", "display" : "empty", contents : "empty" },
+        { "title" : "e3", "display" : "empty", contents : "empty" },
+        { "title" : "f3", "display" : "empty", contents : "empty" },
+        { "title" : "a4", "display" : "empty", contents : "empty" },
+        { "title" : "b4", "display" : "empty", contents : "empty" },
+        { "title" : "c4", "display" : "empty", contents : "empty" },
+        { "title" : "d4", "display" : "empty", contents : "empty" },
+        { "title" : "e4", "display" : "empty", contents : "empty" },
+        { "title" : "f4", "display" : "empty", contents : "empty" },
+        { "title" : "a5", "display" : "empty", contents : "empty" },
+        { "title" : "b5", "display" : "empty", contents : "empty" },
+        { "title" : "c5", "display" : "empty", contents : "empty" },
+        { "title" : "d5", "display" : "empty", contents : "empty" },
+        { "title" : "e5", "display" : "empty", contents : "empty" },
+        { "title" : "f5", "display" : "empty", contents : "empty" },
+        { "title" : "a6", "display" : "empty", contents : "empty" },
+        { "title" : "b6", "display" : "empty", contents : "empty" },
+        { "title" : "c6", "display" : "empty", contents : "empty" },
+        { "title" : "d6", "display" : "empty", contents : "empty" },
+        { "title" : "e6", "display" : "empty", contents : "empty" },
+        { "title" : "f6", "display" : "empty", contents : "empty" },
+    ]
+}
 
 // create class to define players
 
@@ -85,6 +104,17 @@ class Player {
 
 const playerOne = new Player()
 const playerTwo = new Player()
+
+const playerOneStart = () => {
+    // delete the button
+    button.remove();
+    // prompt player one to hide their caviar
+    promptText.innerText = `${playerOne.name}, hide your caviar!`
+    // create new p text to display how many have been placed and how many are still to be placed
+    const caviarPlacementTracker = document.createElement("p")
+    caviarPlacementTracker.innerText = `Placed ${playerOne.caviarPlaced} of ${5 - playerOne.caviarPlaced}`
+    promptSection.appendChild(caviarPlacementTracker)
+}
 
 // player one enter name
 const playerOneName = prompt("Player 1, enter your name:")
@@ -106,6 +136,8 @@ button.setAttribute("id", "button")
 button.innerText = "It is done."
 // FIX: when this loads in the css, it has the width of the h2 element above it
 promptSection.appendChild(button)
+// begin phase one of p1's turn
+button.addEventListener("click", playerOneStart)
 
 // prompt player one to hide five caviar chips
     // display dynamic countdown of chips

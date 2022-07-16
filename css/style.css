@@ -41,10 +41,21 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 h2 {
     font-size: 2em;
+}
+
+#prompts {
+    margin-bottom: 0;
+}
+
+#prompts p {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0;
 }
 
 #button {
