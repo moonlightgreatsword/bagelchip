@@ -61,15 +61,21 @@ const d10 = document.getElementById("D10")
 const e10 = document.getElementById("E10")
 const f10 = document.getElementById("F10")
 
+// things that will fill the top of main
+
+const promptSection = document.getElementById("prompts")
+const promptText = document.createElement("h2")
+promptSection.appendChild(promptText)
+
 // create class to define players
 
 class Player {
     constructor () {
         this.name = "";
-        caviarPlaced = 0;
-        pepperPlaced = 0;
-        caviarFound = 0;
-        pepperFound = 0;
+        this.caviarPlaced = 0;
+        this.pepperPlaced = 0;
+        this.caviarFound = 0;
+        this.pepperFound = 0;
     }
     namePlayer (name) {
         this.name = `${name}`;
@@ -77,13 +83,29 @@ class Player {
     
 }
 
+const playerOne = new Player()
+const playerTwo = new Player()
+
 // player one enter name
+const playerOneName = prompt("Player 1, enter your name:")
     // grab value, save as name key value in object
+playerOne.namePlayer(playerOneName)
+console.log(playerOne);
 
 // player two enter name
+const playerTwoName = prompt("Player 2, enter your name:")
     // grab value, save as name key value in object
+playerTwo.namePlayer(playerTwoName)
+console.log(playerTwo);
 
 // prompt player two to leave
+
+promptText.innerText = `${playerOne.name}, please ask ${playerTwo.name} very nicely to leave the room.`
+const button = document.createElement("p")
+button.setAttribute("id", "button")
+button.innerText = "It is done."
+// FIX: when this loads in the css, it has the width of the h2 element above it
+promptSection.appendChild(button)
 
 // prompt player one to hide five caviar chips
     // display dynamic countdown of chips
