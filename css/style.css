@@ -35,6 +35,18 @@ header p {
     margin: 5px 0 0 10px;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-family: sans-serif;
+    font-size: 2em;
+}
+
 #gameboard {
     display: flex;
     flex-wrap: wrap;

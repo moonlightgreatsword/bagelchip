@@ -63,19 +63,48 @@ const f10 = document.getElementById("F10")
 
 // create class to define players
 
-// class Player {
-//     constructor () {
-//         this.name = "";
-//     }
-//     namePlayer (name) {
-//         this.name = `${name}`;
-//     }
-// }
+class Player {
+    constructor () {
+        this.name = "";
+        caviarPlaced = 0;
+        pepperPlaced = 0;
+        caviarFound = 0;
+        pepperFound = 0;
+    }
+    namePlayer (name) {
+        this.name = `${name}`;
+    }
+    
+}
 
-// class firstPlayer extends Player {
+// player one enter name
+    // grab value, save as name key value in object
 
-// }
+// player two enter name
+    // grab value, save as name key value in object
 
-// class secondPlayer extends Player {
+// prompt player two to leave
 
-// }
+// prompt player one to hide five caviar chips
+    // display dynamic countdown of chips
+    // click on squares to hide them
+    // change square image to display caviar
+    // mark square as no longer empty
+
+// prompt player one to hide five pepper chips
+    // display dynamic countdown of chips
+    // click on squares to hide them
+    // change square image to display pepper jam
+    // mark square as no longer empty
+
+// hide appearance of all chips
+// prompt player switch
+
+// inform player two of how many caviar chips are left to find
+// allow player two to click chips
+    // if chip is empty, mark as "eaten"
+    // if chip is caviar, reveal and add to score
+    // if chip is pepper, reveal and add to spice meter
+// if spice meter reaches three, player two loses
+// if player two finds all five spice chips, player two wins
+
