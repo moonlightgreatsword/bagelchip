@@ -1,5 +1,6 @@
 /* color palette
 Floral White: rgb(247, 244, 234);
+Ecru: rgb(216, 201, 151);
 Lavender Blue: rgb(192, 185, 221);
 Rhythm: rgb(135, 121, 147);
 Little Boy Blue: rgb(128, 161, 212);
@@ -100,4 +101,8 @@ h2 {
     font-size: 2em;
     font-family: sans-serif;
     font-weight: bold;
+}
+
+#tile:hover {
+    background-color: rgb(216, 201, 151);
 }
