@@ -83,7 +83,8 @@ const game = {
         { "title" : "d6", "display" : "empty", contents : "empty" },
         { "title" : "e6", "display" : "empty", contents : "empty" },
         { "title" : "f6", "display" : "empty", contents : "empty" },
-    ]
+    ],
+    phase: 0
 }
 
 // create class to define players
@@ -108,6 +109,7 @@ const playerTwo = new Player()
 const playerOneStart = () => {
     // delete the button
     button.remove();
+    game.phase = 1;
     // prompt player one to hide their caviar
     promptText.innerText = `${playerOne.name}, hide your caviar!`
     // create new p text to display how many have been placed and how many are still to be placed
@@ -115,6 +117,19 @@ const playerOneStart = () => {
     caviarPlacementTracker.innerText = `Placed ${playerOne.caviarPlaced} of ${5 - playerOne.caviarPlaced}`
     promptSection.appendChild(caviarPlacementTracker)
 }
+
+const clickTile = () => {
+    if (game.phase == 0) {
+        console.log(`You have clicked a tile!`)
+    } else if (game.phase == 1) {
+        console.log(`${playerOne.name} has clicked a tile!`)
+    }
+}
+
+// make tiles clickable
+document.querySelectorAll(".tile").forEach((element) => {
+    element.addEventListener("click", clickTile)
+})
 
 // player one enter name
 const playerOneName = prompt("Player 1, enter your name:")
