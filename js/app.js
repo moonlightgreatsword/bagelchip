@@ -47,42 +47,42 @@ promptSection.appendChild(promptText)
 
 const game = {
     tiles: [
-        { "title" : "a1", "display" : "empty", contents : "empty" },
-        { "title" : "b1", "display" : "empty", contents : "empty" },
-        { "title" : "c1", "display" : "empty", contents : "empty" },
-        { "title" : "d1", "display" : "empty", contents : "empty" },
-        { "title" : "e1", "display" : "empty", contents : "empty" },
-        { "title" : "f1", "display" : "empty", contents : "empty" },
-        { "title" : "a2", "display" : "empty", contents : "empty" },
-        { "title" : "b2", "display" : "empty", contents : "empty" },
-        { "title" : "c2", "display" : "empty", contents : "empty" },
-        { "title" : "d2", "display" : "empty", contents : "empty" },
-        { "title" : "e2", "display" : "empty", contents : "empty" },
-        { "title" : "f2", "display" : "empty", contents : "empty" },
-        { "title" : "a3", "display" : "empty", contents : "empty" },
-        { "title" : "b3", "display" : "empty", contents : "empty" },
-        { "title" : "c3", "display" : "empty", contents : "empty" },
-        { "title" : "d3", "display" : "empty", contents : "empty" },
-        { "title" : "e3", "display" : "empty", contents : "empty" },
-        { "title" : "f3", "display" : "empty", contents : "empty" },
-        { "title" : "a4", "display" : "empty", contents : "empty" },
-        { "title" : "b4", "display" : "empty", contents : "empty" },
-        { "title" : "c4", "display" : "empty", contents : "empty" },
-        { "title" : "d4", "display" : "empty", contents : "empty" },
-        { "title" : "e4", "display" : "empty", contents : "empty" },
-        { "title" : "f4", "display" : "empty", contents : "empty" },
-        { "title" : "a5", "display" : "empty", contents : "empty" },
-        { "title" : "b5", "display" : "empty", contents : "empty" },
-        { "title" : "c5", "display" : "empty", contents : "empty" },
-        { "title" : "d5", "display" : "empty", contents : "empty" },
-        { "title" : "e5", "display" : "empty", contents : "empty" },
-        { "title" : "f5", "display" : "empty", contents : "empty" },
-        { "title" : "a6", "display" : "empty", contents : "empty" },
-        { "title" : "b6", "display" : "empty", contents : "empty" },
-        { "title" : "c6", "display" : "empty", contents : "empty" },
-        { "title" : "d6", "display" : "empty", contents : "empty" },
-        { "title" : "e6", "display" : "empty", contents : "empty" },
-        { "title" : "f6", "display" : "empty", contents : "empty" },
+        { location : "a1", display : "empty", contents : "empty" },
+        { location : "b1", display : "empty", contents : "empty" },
+        { location : "c1", display : "empty", contents : "empty" },
+        { location : "d1", display : "empty", contents : "empty" },
+        { location : "e1", display : "empty", contents : "empty" },
+        { location : "f1", display : "empty", contents : "empty" },
+        { location : "a2", display : "empty", contents : "empty" },
+        { location : "b2", display : "empty", contents : "empty" },
+        { location : "c2", display : "empty", contents : "empty" },
+        { location : "d2", display : "empty", contents : "empty" },
+        { location : "e2", display : "empty", contents : "empty" },
+        { location : "f2", display : "empty", contents : "empty" },
+        { location : "a3", display : "empty", contents : "empty" },
+        { location : "b3", display : "empty", contents : "empty" },
+        { location : "c3", display : "empty", contents : "empty" },
+        { location : "d3", display : "empty", contents : "empty" },
+        { location : "e3", display : "empty", contents : "empty" },
+        { location : "f3", display : "empty", contents : "empty" },
+        { location : "a4", display : "empty", contents : "empty" },
+        { location : "b4", display : "empty", contents : "empty" },
+        { location : "c4", display : "empty", contents : "empty" },
+        { location : "d4", display : "empty", contents : "empty" },
+        { location : "e4", display : "empty", contents : "empty" },
+        { location : "f4", display : "empty", contents : "empty" },
+        { location : "a5", display : "empty", contents : "empty" },
+        { location : "b5", display : "empty", contents : "empty" },
+        { location : "c5", display : "empty", contents : "empty" },
+        { location : "d5", display : "empty", contents : "empty" },
+        { location : "e5", display : "empty", contents : "empty" },
+        { location : "f5", display : "empty", contents : "empty" },
+        { location : "a6", display : "empty", contents : "empty" },
+        { location : "b6", display : "empty", contents : "empty" },
+        { location : "c6", display : "empty", contents : "empty" },
+        { location : "d6", display : "empty", contents : "empty" },
+        { location : "e6", display : "empty", contents : "empty" },
+        { location : "f6", display : "empty", contents : "empty" },
     ],
     phase: 0
 }
@@ -114,22 +114,212 @@ const playerOneStart = () => {
     promptText.innerText = `${playerOne.name}, hide your caviar!`
     // create new p text to display how many have been placed and how many are still to be placed
     const caviarPlacementTracker = document.createElement("p")
-    caviarPlacementTracker.innerText = `Placed ${playerOne.caviarPlaced} of ${5 - playerOne.caviarPlaced}`
+    caviarPlacementTracker.setAttribute("id", "caviar-placement-tracker")
+    caviarPlacementTracker.innerText = `Placed ${playerOne.caviarPlaced} of 5`
     promptSection.appendChild(caviarPlacementTracker)
 }
 
-const clickTile = () => {
+// // function for when a tile is clicked
+const clickTile = (tile) => {
+    // use tile parameter to select object from game tiles array whose location matches passed parameter
+        // thank you stackoverflow dot com https://stackoverflow.com/questions/13964155/get-javascript-object-from-array-of-objects-by-value-of-property
+    let currentTile = game.tiles.filter(obj => {return obj.location == `${tile}`})
+    // identify which stage of the game it is
     if (game.phase == 0) {
-        console.log(`You have clicked a tile!`)
+        console.log(`You have clicked tile ${tile}!`);
+    // player one's caviar placement phase
     } else if (game.phase == 1) {
-        console.log(`${playerOne.name} has clicked a tile!`)
+        console.log(`${playerOne.name} has clicked tile ${tile}!`);
+        // if the selected chip is currently empty
+        if (currentTile.contents == "empty") {
+            // put caviar on it and change its display to match
+            currentTile.contents = "caviar";
+            currentTile.display = "caviar";
+            // increase the counter of caviar placed
+            playerOne.caviarPlaced++;
+            // find and update the display above the board
+            let caviarPlacementTracker = document.getElementById("caviar-placement-tracker");
+            caviarPlacementTracker.innerText = `Placed ${playerOne.caviarPlaced} of ${5 - playerOne.caviarPlaced}`;
+            // once all five caviar chips have been placed, initiate phase 2
+            if (playerOne.caviarPlaced == 5) {
+                caviarPlacementTracker.remove();
+                game.phase = 2;
+                // create new tracker for peppers
+                promptText.innerText = `${playerOne.name}, hide spicy peppers to protect your caviar!`
+                const pepperPlacementTracker = document.createElement("p");
+                pepperPlacementTracker.setAttribute("id", "pepper-placement-tracker");
+                pepperPlacementTracker.innerText = `Placed ${playerOne.pepperPlaced} of 5`;
+                promptSection.appendChild(pepperPlacementTracker);
+            }
+        }
+    // player one's pepper placement phase
+    } else if (game.phase == 2) {
+        console.log(`${playerOne.name} has clicked tile ${tile}!`);
+        if (currentTile.contents == "empty") {
+            currentTile.contents = "pepper";
+            currentTile.display = "pepper";
+            playerOne.pepperPlaced++;
+            let pepperPlacementTracker = document.getElementById("pepper-placement-tracker");
+            pepperPlacementTracker.innerText = `Placed ${playerOne.pepperPlaced} of 5`;
+            if (playerOne.pepperPlaced == 5) {
+                pepperPlacementTracker.remove();
+                game.phase = 3;
+            }
+        }
     }
 }
 
-// make tiles clickable
-document.querySelectorAll(".tile").forEach((element) => {
-    element.addEventListener("click", clickTile)
-})
+const clickA1 = () => {
+    clickTile(a1)
+}
+const clickB1 = () => {
+    clickTile(b1)
+}
+const clickC1 = () => {
+    clickTile(c1)
+}
+const clickD1 = () => {
+    clickTile(d1)
+}
+const clickE1 = () => {
+    clickTile(e1)
+}
+const clickF1 = () => {
+    clickTile(f1)
+}
+const clickA2 = () => {
+    clickTile(a2)
+}
+const clickB2 = () => {
+    clickTile(b2)
+}
+const clickC2 = () => {
+    clickTile(c2)
+}
+const clickD2 = () => {
+    clickTile(d2)
+}
+const clickE2 = () => {
+    clickTile(e2)
+}
+const clickF2 = () => {
+    clickTile(f2)
+}
+const clickA3 = () => {
+    clickTile(a3)
+}
+const clickB3 = () => {
+    clickTile(b3)
+}
+const clickC3 = () => {
+    clickTile(c3)
+}
+const clickD3 = () => {
+    clickTile(d3)
+}
+const clickE3 = () => {
+    clickTile(e3)
+}
+const clickF3 = () => {
+    clickTile(f3)
+}
+const clickA4 = () => {
+    clickTile(a4)
+}
+const clickB4 = () => {
+    clickTile(b4)
+}
+const clickC4 = () => {
+    clickTile(c4)
+}
+const clickD4 = () => {
+    clickTile(d4)
+}
+const clickE4 = () => {
+    clickTile(e4)
+}
+const clickF4 = () => {
+    clickTile(f4)
+}
+const clickA5 = () => {
+    clickTile(a5)
+}
+const clickB5 = () => {
+    clickTile(b5)
+}
+const clickC5 = () => {
+    clickTile(c5)
+}
+const clickD5 = () => {
+    clickTile(d5)
+}
+const clickE5 = () => {
+    clickTile(e5)
+}
+const clickF5 = () => {
+    clickTile(f5)
+}
+const clickA6 = () => {
+    clickTile(a6)
+}
+const clickB6 = () => {
+    clickTile(b6)
+}
+const clickC6 = () => {
+    clickTile(c6)
+}
+const clickD6 = () => {
+    clickTile(d6)
+}
+const clickE6 = () => {
+    clickTile(e6)
+}
+const clickF6 = () => {
+    clickTile(f6)
+}
+
+// // make tiles clickable
+// document.querySelectorAll(".tile").forEach((element) => {
+//     element.addEventListener("click", clickTile)
+// })
+
+// or let's just try doing them all individually
+a1.addEventListener("click", clickA1)
+b1.addEventListener("click", clickB1)
+c1.addEventListener("click", clickC1)
+d1.addEventListener("click", clickD1)
+e1.addEventListener("click", clickE1)
+f1.addEventListener("click", clickF1)
+a2.addEventListener("click", clickA2)
+b2.addEventListener("click", clickB2)
+c2.addEventListener("click", clickC2)
+d2.addEventListener("click", clickD2)
+e2.addEventListener("click", clickE2)
+f2.addEventListener("click", clickF2)
+a3.addEventListener("click", clickA3)
+b3.addEventListener("click", clickB3)
+c3.addEventListener("click", clickC3)
+d3.addEventListener("click", clickD3)
+e3.addEventListener("click", clickE3)
+f3.addEventListener("click", clickF3)
+a4.addEventListener("click", clickA4)
+b4.addEventListener("click", clickB4)
+c4.addEventListener("click", clickC4)
+d4.addEventListener("click", clickD4)
+e4.addEventListener("click", clickE4)
+f4.addEventListener("click", clickF4)
+a5.addEventListener("click", clickA5)
+b5.addEventListener("click", clickB5)
+c5.addEventListener("click", clickC5)
+d5.addEventListener("click", clickD5)
+e5.addEventListener("click", clickE5)
+f5.addEventListener("click", clickF5)
+a6.addEventListener("click", clickA6)
+b6.addEventListener("click", clickB6)
+c6.addEventListener("click", clickC6)
+d6.addEventListener("click", clickD6)
+e6.addEventListener("click", clickE6)
+f6.addEventListener("click", clickF6)
 
 // player one enter name
 const playerOneName = prompt("Player 1, enter your name:")
