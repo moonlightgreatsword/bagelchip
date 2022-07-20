@@ -7,6 +7,8 @@ Little Boy Blue: rgb(128, 161, 212);
 Medium Turquoise: rgb(117, 201, 200);
 Vegas Gold (Caviar): rgb(197, 178, 109);
 Metallic Sunburst (Caviar Hover): rgb(160, 140, 64);
+Vermillion (Pepper): rgb(208, 72, 42);
+Chinese Red (Pepper Hover): rgb(169, 59, 35);
 */
 
 body {
@@ -115,4 +117,12 @@ h2 {
 
 #gameboard .caviar:hover {
     background-color: rgb(160, 140, 64);
+}
+
+#gameboard .pepper {
+    background-color: rgb(208, 72, 42);
+}
+
+#gameboard .pepper:hover {
+    background-color: rgb(169, 59, 35);
 }

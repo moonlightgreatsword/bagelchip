@@ -1,3 +1,7 @@
+// open questions:
+    // how do you tie an html element to an object in javascript?
+    // is there a way to return the value of an html element's id?
+
 // define buttons
 
 const a1Tile = document.querySelector("#A1")
@@ -109,6 +113,7 @@ const playerTwo = new Player()
 const playerOneStart = () => {
     // delete the button
     button.remove();
+    button.removeEventListener("click", playerOneStart);
     game.phase = 1;
     // prompt player one to hide their caviar
     promptText.innerText = `${playerOne.name}, hide your caviar!`
@@ -119,6 +124,21 @@ const playerOneStart = () => {
     promptSection.appendChild(caviarPlacementTracker)
 }
 
+const playerTwoStart = () => {
+    button.remove();
+}
+
+const switchPlayers = () => {
+    // reset tile displays to empty
+    game.tiles.forEach((element) => {element.display = "empty"});
+    document.querySelectorAll(".tile").className = "tile";
+    promptText.innerText = `${playerOne.name}, ask ${playerTwo.name} to return.`;
+    button.innerText = "Yoo-hoo.";
+    button.addEventListener("click", playerTwoStart);
+    promptSection.appendChild(button);
+    game.phase = 4;
+}
+
 // // function for when a tile is clicked
 const clickTile = (tile) => {
     console.log(`The function clickTile has been run with the argument ${tile}`)
@@ -126,7 +146,7 @@ const clickTile = (tile) => {
         // thank you stackoverflow dot com https://stackoverflow.com/questions/13964155/get-javascript-object-from-array-of-objects-by-value-of-property
     let currentTile = game.tiles.find(obj => {return obj.location == tile})
     // identify which stage of the game it is
-    if (game.phase == 0) {
+    if (game.phase == 0 || game.phase == 3) {
         console.log(`You have clicked tile ${tile}!`);
     // player one's caviar placement phase
     } else if (game.phase == 1) {
@@ -175,6 +195,8 @@ const clickTile = (tile) => {
     if (currentTile.display == "caviar") {
         // https://stackoverflow.com/questions/12135162/adding-a-class-with-javascript-not-replace
         document.querySelector(`#${tile.toUpperCase()}`).className += " caviar";
+    } else if (currentTile.display == "pepper") {
+        document.querySelector(`#${tile.toUpperCase()}`).className += " pepper";
     }
     console.log(currentTile);
 }
