@@ -126,3 +126,8 @@ h2 {
 #gameboard .pepper:hover {
     background-color: rgb(169, 59, 35);
 }
+
+#gameboard .eaten {
+    background-color: rgb(117, 201, 200);
+    border: none;
+}

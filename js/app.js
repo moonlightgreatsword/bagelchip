@@ -126,17 +126,33 @@ const playerOneStart = () => {
 
 const playerTwoStart = () => {
     button.remove();
+    button.removeEventListener("click", playerTwoStart);
+    game.phase = 4;
+    promptText.innerText = `${playerTwo.name}, find all 5 caviar chips before you find 3 pepper chips!`;
 }
 
 const switchPlayers = () => {
     // reset tile displays to empty
     game.tiles.forEach((element) => {element.display = "empty"});
-    document.querySelectorAll(".tile").className = "tile";
+    game.tiles.forEach((element) => {setDisplay(element.location)});
     promptText.innerText = `${playerOne.name}, ask ${playerTwo.name} to return.`;
     button.innerText = "Yoo-hoo.";
     button.addEventListener("click", playerTwoStart);
     promptSection.appendChild(button);
-    game.phase = 4;
+}
+
+const setDisplay = (tile) => {
+    let currentTile = game.tiles.find(obj => {return obj.location == tile});
+    if (currentTile.display == "caviar") {
+        // https://stackoverflow.com/questions/12135162/adding-a-class-with-javascript-not-replace
+        document.querySelector(`#${tile.toUpperCase()}`).className += " caviar";
+    } else if (currentTile.display == "pepper") {
+        document.querySelector(`#${tile.toUpperCase()}`).className += " pepper";
+    } else if (currentTile.display == "eaten") {
+        document.querySelector(`#${tile.toUpperCase()}`).className += " eaten";
+    } else if (currentTile.display == "empty") {
+        document.querySelector(`#${tile.toUpperCase()}`).className = "tile";
+    }
 }
 
 // // function for when a tile is clicked
@@ -146,7 +162,7 @@ const clickTile = (tile) => {
         // thank you stackoverflow dot com https://stackoverflow.com/questions/13964155/get-javascript-object-from-array-of-objects-by-value-of-property
     let currentTile = game.tiles.find(obj => {return obj.location == tile})
     // identify which stage of the game it is
-    if (game.phase == 0 || game.phase == 3) {
+    if (game.phase == 0 || game.phase == 3 || game.phase == 5) {
         console.log(`You have clicked tile ${tile}!`);
     // player one's caviar placement phase
     } else if (game.phase == 1) {
@@ -157,6 +173,7 @@ const clickTile = (tile) => {
             // put caviar on it and change its display to match
             currentTile.contents = "caviar";
             currentTile.display = "caviar";
+            setDisplay(tile);
             // increase the counter of caviar placed
             playerOne.caviarPlaced++;
             // find and update the display above the board
@@ -182,21 +199,42 @@ const clickTile = (tile) => {
         if (currentTile.contents == "empty") {
             currentTile.contents = "pepper";
             currentTile.display = "pepper";
+            setDisplay(tile);
             playerOne.pepperPlaced++;
             let pepperPlacementTracker = document.querySelector("#pepper-placement-tracker");
             pepperPlacementTracker.innerText = `Placed ${playerOne.pepperPlaced} of 5`;
             if (playerOne.pepperPlaced == 5) {
                 pepperPlacementTracker.remove();
                 game.phase = 3;
+                switchPlayers();
             }
         }
-    }
-    // now we set the tile's display
-    if (currentTile.display == "caviar") {
-        // https://stackoverflow.com/questions/12135162/adding-a-class-with-javascript-not-replace
-        document.querySelector(`#${tile.toUpperCase()}`).className += " caviar";
-    } else if (currentTile.display == "pepper") {
-        document.querySelector(`#${tile.toUpperCase()}`).className += " pepper";
+    } else if (game.phase == 4) {
+        console.log(`${playerTwo.name} has clicked tile ${tile}!`);
+        if (currentTile.contents == "empty") {
+            currentTile.display = "eaten";
+            setDisplay(tile);
+        } else if (currentTile.contents == "caviar") {
+            currentTile.display = "caviar";
+            setDisplay(tile);
+            playerTwo.caviarFound++;
+            if (playerTwo.caviarFound == 5) {
+                console.log(`${playerTwo.name} wins!`);
+                promptText.innerText = `${playerTwo.name} has found all the caviar!`;
+                game.phase = 5;
+                alert(`${playerTwo.name} wins!`);
+            }
+        } else if (currentTile.contents == "pepper") {
+            currentTile.display = "pepper";
+            setDisplay(tile);
+            playerTwo.pepperFound++;
+            if (playerTwo.pepperFound == 3) {
+                console.log(`${playerOne.name} wins!`);
+                promptText.innerText = `${playerTwo.name} can no longer handle the heat!`;
+                game.phase = 5;
+                alert(`${playerOne.name} wins!`);
+            }
+        }
     }
     console.log(currentTile);
 }
