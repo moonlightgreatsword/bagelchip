@@ -109,10 +109,10 @@ h2 {
     background-color: rgb(216, 201, 151);
 }
 
-.caviar {
+#gameboard .caviar {
     background-color: rgb(197, 178, 109);
 }
 
-.caviar:hover {
+#gameboard .caviar:hover {
     background-color: rgb(160, 140, 64);
 }

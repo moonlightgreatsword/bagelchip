@@ -1,45 +1,45 @@
 // define buttons
 
-const a1Tile = document.getElementById("A1")
-const b1Tile = document.getElementById("B1")
-const c1Tile = document.getElementById("C1")
-const d1Tile = document.getElementById("D1")
-const e1Tile = document.getElementById("E1")
-const f1Tile = document.getElementById("F1")
-const a2Tile = document.getElementById("A2")
-const b2Tile = document.getElementById("B2")
-const c2Tile = document.getElementById("C2")
-const d2Tile = document.getElementById("D2")
-const e2Tile = document.getElementById("E2")
-const f2Tile = document.getElementById("F2")
-const a3Tile = document.getElementById("A3")
-const b3Tile = document.getElementById("B3")
-const c3Tile = document.getElementById("C3")
-const d3Tile = document.getElementById("D3")
-const e3Tile = document.getElementById("E3")
-const f3Tile = document.getElementById("F3")
-const a4Tile = document.getElementById("A4")
-const b4Tile = document.getElementById("B4")
-const c4Tile = document.getElementById("C4")
-const d4Tile = document.getElementById("D4")
-const e4Tile = document.getElementById("E4")
-const f4Tile = document.getElementById("F4")
-const a5Tile = document.getElementById("A5")
-const b5Tile = document.getElementById("B5")
-const c5Tile = document.getElementById("C5")
-const d5Tile = document.getElementById("D5")
-const e5Tile = document.getElementById("E5")
-const f5Tile = document.getElementById("F5")
-const a6Tile = document.getElementById("A6")
-const b6Tile = document.getElementById("B6")
-const c6Tile = document.getElementById("C6")
-const d6Tile = document.getElementById("D6")
-const e6Tile = document.getElementById("E6")
-const f6Tile = document.getElementById("F6")
+const a1Tile = document.querySelector("#A1")
+const b1Tile = document.querySelector("#B1")
+const c1Tile = document.querySelector("#C1")
+const d1Tile = document.querySelector("#D1")
+const e1Tile = document.querySelector("#E1")
+const f1Tile = document.querySelector("#F1")
+const a2Tile = document.querySelector("#A2")
+const b2Tile = document.querySelector("#B2")
+const c2Tile = document.querySelector("#C2")
+const d2Tile = document.querySelector("#D2")
+const e2Tile = document.querySelector("#E2")
+const f2Tile = document.querySelector("#F2")
+const a3Tile = document.querySelector("#A3")
+const b3Tile = document.querySelector("#B3")
+const c3Tile = document.querySelector("#C3")
+const d3Tile = document.querySelector("#D3")
+const e3Tile = document.querySelector("#E3")
+const f3Tile = document.querySelector("#F3")
+const a4Tile = document.querySelector("#A4")
+const b4Tile = document.querySelector("#B4")
+const c4Tile = document.querySelector("#C4")
+const d4Tile = document.querySelector("#D4")
+const e4Tile = document.querySelector("#E4")
+const f4Tile = document.querySelector("#F4")
+const a5Tile = document.querySelector("#A5")
+const b5Tile = document.querySelector("#B5")
+const c5Tile = document.querySelector("#C5")
+const d5Tile = document.querySelector("#D5")
+const e5Tile = document.querySelector("#E5")
+const f5Tile = document.querySelector("#F5")
+const a6Tile = document.querySelector("#A6")
+const b6Tile = document.querySelector("#B6")
+const c6Tile = document.querySelector("#C6")
+const d6Tile = document.querySelector("#D6")
+const e6Tile = document.querySelector("#E6")
+const f6Tile = document.querySelector("#F6")
 
 // things that will fill the top of main
 
-const promptSection = document.getElementById("prompts")
+const promptSection = document.querySelector("#prompts")
 const promptText = document.createElement("h2")
 promptSection.appendChild(promptText)
 
@@ -124,14 +124,14 @@ const clickTile = (tile) => {
     console.log(`The function clickTile has been run with the argument ${tile}`)
     // use tile parameter to select object from game tiles array whose location matches passed parameter
         // thank you stackoverflow dot com https://stackoverflow.com/questions/13964155/get-javascript-object-from-array-of-objects-by-value-of-property
-    let currentTile = game.tiles.filter(obj => {return obj.location === tile})
-    console.log(currentTile);
+    let currentTile = game.tiles.find(obj => {return obj.location == tile})
     // identify which stage of the game it is
     if (game.phase == 0) {
         console.log(`You have clicked tile ${tile}!`);
     // player one's caviar placement phase
     } else if (game.phase == 1) {
         console.log(`${playerOne.name} has clicked tile ${tile}!`);
+        console.log(currentTile.contents)
         // if the selected chip is currently empty
         if (currentTile.contents == "empty") {
             // put caviar on it and change its display to match
@@ -140,8 +140,8 @@ const clickTile = (tile) => {
             // increase the counter of caviar placed
             playerOne.caviarPlaced++;
             // find and update the display above the board
-            let caviarPlacementTracker = document.getElementById("caviar-placement-tracker");
-            caviarPlacementTracker.innerText = `Placed ${playerOne.caviarPlaced} of ${5 - playerOne.caviarPlaced}`;
+            let caviarPlacementTracker = document.querySelector("#caviar-placement-tracker");
+            caviarPlacementTracker.innerText = `Placed ${playerOne.caviarPlaced} of 5`;
             // once all five caviar chips have been placed, initiate phase 2
             if (playerOne.caviarPlaced == 5) {
                 caviarPlacementTracker.remove();
@@ -153,6 +153,8 @@ const clickTile = (tile) => {
                 pepperPlacementTracker.innerText = `Placed ${playerOne.pepperPlaced} of 5`;
                 promptSection.appendChild(pepperPlacementTracker);
             }
+        } else {
+            console.log("This tile is already full!")
         }
     // player one's pepper placement phase
     } else if (game.phase == 2) {
@@ -161,7 +163,7 @@ const clickTile = (tile) => {
             currentTile.contents = "pepper";
             currentTile.display = "pepper";
             playerOne.pepperPlaced++;
-            let pepperPlacementTracker = document.getElementById("pepper-placement-tracker");
+            let pepperPlacementTracker = document.querySelector("#pepper-placement-tracker");
             pepperPlacementTracker.innerText = `Placed ${playerOne.pepperPlaced} of 5`;
             if (playerOne.pepperPlaced == 5) {
                 pepperPlacementTracker.remove();
@@ -171,8 +173,8 @@ const clickTile = (tile) => {
     }
     // now we set the tile's display
     if (currentTile.display == "caviar") {
-        let tileDiv = document.getElementById(`${tile}`);
-        tileDiv.setAttribute("class", "caviar");
+        // https://stackoverflow.com/questions/12135162/adding-a-class-with-javascript-not-replace
+        document.querySelector(`#${tile.toUpperCase()}`).className += " caviar";
     }
     console.log(currentTile);
 }
