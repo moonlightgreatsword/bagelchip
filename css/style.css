@@ -5,6 +5,8 @@ Lavender Blue: rgb(192, 185, 221);
 Rhythm: rgb(135, 121, 147);
 Little Boy Blue: rgb(128, 161, 212);
 Medium Turquoise: rgb(117, 201, 200);
+Vegas Gold (Caviar): rgb(197, 178, 109);
+Metallic Sunburst (Caviar Hover): rgb(160, 140, 64);
 */
 
 body {
@@ -105,4 +107,12 @@ h2 {
 
 #gameboard .tile:hover {
     background-color: rgb(216, 201, 151);
+}
+
+.caviar {
+    background-color: rgb(197, 178, 109);
+}
+
+.caviar:hover {
+    background-color: rgb(160, 140, 64);
 }

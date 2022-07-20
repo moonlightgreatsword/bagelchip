@@ -1,41 +1,41 @@
 // define buttons
 
-const a1 = document.getElementById("A1")
-const b1 = document.getElementById("B1")
-const c1 = document.getElementById("C1")
-const d1 = document.getElementById("D1")
-const e1 = document.getElementById("E1")
-const f1 = document.getElementById("F1")
-const a2 = document.getElementById("A2")
-const b2 = document.getElementById("B2")
-const c2 = document.getElementById("C2")
-const d2 = document.getElementById("D2")
-const e2 = document.getElementById("E2")
-const f2 = document.getElementById("F2")
-const a3 = document.getElementById("A3")
-const b3 = document.getElementById("B3")
-const c3 = document.getElementById("C3")
-const d3 = document.getElementById("D3")
-const e3 = document.getElementById("E3")
-const f3 = document.getElementById("F3")
-const a4 = document.getElementById("A4")
-const b4 = document.getElementById("B4")
-const c4 = document.getElementById("C4")
-const d4 = document.getElementById("D4")
-const e4 = document.getElementById("E4")
-const f4 = document.getElementById("F4")
-const a5 = document.getElementById("A5")
-const b5 = document.getElementById("B5")
-const c5 = document.getElementById("C5")
-const d5 = document.getElementById("D5")
-const e5 = document.getElementById("E5")
-const f5 = document.getElementById("F5")
-const a6 = document.getElementById("A6")
-const b6 = document.getElementById("B6")
-const c6 = document.getElementById("C6")
-const d6 = document.getElementById("D6")
-const e6 = document.getElementById("E6")
-const f6 = document.getElementById("F6")
+const a1Tile = document.getElementById("A1")
+const b1Tile = document.getElementById("B1")
+const c1Tile = document.getElementById("C1")
+const d1Tile = document.getElementById("D1")
+const e1Tile = document.getElementById("E1")
+const f1Tile = document.getElementById("F1")
+const a2Tile = document.getElementById("A2")
+const b2Tile = document.getElementById("B2")
+const c2Tile = document.getElementById("C2")
+const d2Tile = document.getElementById("D2")
+const e2Tile = document.getElementById("E2")
+const f2Tile = document.getElementById("F2")
+const a3Tile = document.getElementById("A3")
+const b3Tile = document.getElementById("B3")
+const c3Tile = document.getElementById("C3")
+const d3Tile = document.getElementById("D3")
+const e3Tile = document.getElementById("E3")
+const f3Tile = document.getElementById("F3")
+const a4Tile = document.getElementById("A4")
+const b4Tile = document.getElementById("B4")
+const c4Tile = document.getElementById("C4")
+const d4Tile = document.getElementById("D4")
+const e4Tile = document.getElementById("E4")
+const f4Tile = document.getElementById("F4")
+const a5Tile = document.getElementById("A5")
+const b5Tile = document.getElementById("B5")
+const c5Tile = document.getElementById("C5")
+const d5Tile = document.getElementById("D5")
+const e5Tile = document.getElementById("E5")
+const f5Tile = document.getElementById("F5")
+const a6Tile = document.getElementById("A6")
+const b6Tile = document.getElementById("B6")
+const c6Tile = document.getElementById("C6")
+const d6Tile = document.getElementById("D6")
+const e6Tile = document.getElementById("E6")
+const f6Tile = document.getElementById("F6")
 
 // things that will fill the top of main
 
@@ -121,9 +121,11 @@ const playerOneStart = () => {
 
 // // function for when a tile is clicked
 const clickTile = (tile) => {
+    console.log(`The function clickTile has been run with the argument ${tile}`)
     // use tile parameter to select object from game tiles array whose location matches passed parameter
         // thank you stackoverflow dot com https://stackoverflow.com/questions/13964155/get-javascript-object-from-array-of-objects-by-value-of-property
-    let currentTile = game.tiles.filter(obj => {return obj.location == `${tile}`})
+    let currentTile = game.tiles.filter(obj => {return obj.location === tile})
+    console.log(currentTile);
     // identify which stage of the game it is
     if (game.phase == 0) {
         console.log(`You have clicked tile ${tile}!`);
@@ -167,115 +169,121 @@ const clickTile = (tile) => {
             }
         }
     }
+    // now we set the tile's display
+    if (currentTile.display == "caviar") {
+        let tileDiv = document.getElementById(`${tile}`);
+        tileDiv.setAttribute("class", "caviar");
+    }
+    console.log(currentTile);
 }
 
 const clickA1 = () => {
-    clickTile(a1)
+    clickTile("a1")
 }
 const clickB1 = () => {
-    clickTile(b1)
+    clickTile("b1")
 }
 const clickC1 = () => {
-    clickTile(c1)
+    clickTile("c1")
 }
 const clickD1 = () => {
-    clickTile(d1)
+    clickTile("d1")
 }
 const clickE1 = () => {
-    clickTile(e1)
+    clickTile("e1")
 }
 const clickF1 = () => {
-    clickTile(f1)
+    clickTile("f1")
 }
 const clickA2 = () => {
-    clickTile(a2)
+    clickTile("a2")
 }
 const clickB2 = () => {
-    clickTile(b2)
+    clickTile("b2")
 }
 const clickC2 = () => {
-    clickTile(c2)
+    clickTile("c2")
 }
 const clickD2 = () => {
-    clickTile(d2)
+    clickTile("d2")
 }
 const clickE2 = () => {
-    clickTile(e2)
+    clickTile("e2")
 }
 const clickF2 = () => {
-    clickTile(f2)
+    clickTile("f2")
 }
 const clickA3 = () => {
-    clickTile(a3)
+    clickTile("a3")
 }
 const clickB3 = () => {
-    clickTile(b3)
+    clickTile("b3")
 }
 const clickC3 = () => {
-    clickTile(c3)
+    clickTile("c3")
 }
 const clickD3 = () => {
-    clickTile(d3)
+    clickTile("d3")
 }
 const clickE3 = () => {
-    clickTile(e3)
+    clickTile("e3")
 }
 const clickF3 = () => {
-    clickTile(f3)
+    clickTile("f3")
 }
 const clickA4 = () => {
-    clickTile(a4)
+    clickTile("a4")
 }
 const clickB4 = () => {
-    clickTile(b4)
+    clickTile("b4")
 }
 const clickC4 = () => {
-    clickTile(c4)
+    clickTile("c4")
 }
 const clickD4 = () => {
-    clickTile(d4)
+    clickTile("d4")
 }
 const clickE4 = () => {
-    clickTile(e4)
+    clickTile("e4")
 }
 const clickF4 = () => {
-    clickTile(f4)
+    clickTile("f4")
 }
 const clickA5 = () => {
-    clickTile(a5)
+    clickTile("a5")
 }
 const clickB5 = () => {
-    clickTile(b5)
+    clickTile("b5")
 }
 const clickC5 = () => {
-    clickTile(c5)
+    clickTile("c5")
 }
 const clickD5 = () => {
-    clickTile(d5)
+    clickTile("d5")
 }
 const clickE5 = () => {
-    clickTile(e5)
+    clickTile("e5")
 }
 const clickF5 = () => {
-    clickTile(f5)
+    clickTile("f5")
 }
 const clickA6 = () => {
-    clickTile(a6)
+    clickTile("a6")
 }
 const clickB6 = () => {
-    clickTile(b6)
+    clickTile("b6")
 }
 const clickC6 = () => {
-    clickTile(c6)
+    clickTile("c6")
 }
 const clickD6 = () => {
-    clickTile(d6)
+    clickTile("d6")
 }
 const clickE6 = () => {
-    clickTile(e6)
+    clickTile("e6")
 }
 const clickF6 = () => {
-    clickTile(f6)
+    clickTile("f6")
 }
 
 // // make tiles clickable
@@ -284,42 +292,42 @@ const clickF6 = () => {
 // })
 
 // or let's just try doing them all individually
-a1.addEventListener("click", clickA1)
-b1.addEventListener("click", clickB1)
-c1.addEventListener("click", clickC1)
-d1.addEventListener("click", clickD1)
-e1.addEventListener("click", clickE1)
-f1.addEventListener("click", clickF1)
-a2.addEventListener("click", clickA2)
-b2.addEventListener("click", clickB2)
-c2.addEventListener("click", clickC2)
-d2.addEventListener("click", clickD2)
-e2.addEventListener("click", clickE2)
-f2.addEventListener("click", clickF2)
-a3.addEventListener("click", clickA3)
-b3.addEventListener("click", clickB3)
-c3.addEventListener("click", clickC3)
-d3.addEventListener("click", clickD3)
-e3.addEventListener("click", clickE3)
-f3.addEventListener("click", clickF3)
-a4.addEventListener("click", clickA4)
-b4.addEventListener("click", clickB4)
-c4.addEventListener("click", clickC4)
-d4.addEventListener("click", clickD4)
-e4.addEventListener("click", clickE4)
-f4.addEventListener("click", clickF4)
-a5.addEventListener("click", clickA5)
-b5.addEventListener("click", clickB5)
-c5.addEventListener("click", clickC5)
-d5.addEventListener("click", clickD5)
-e5.addEventListener("click", clickE5)
-f5.addEventListener("click", clickF5)
-a6.addEventListener("click", clickA6)
-b6.addEventListener("click", clickB6)
-c6.addEventListener("click", clickC6)
-d6.addEventListener("click", clickD6)
-e6.addEventListener("click", clickE6)
-f6.addEventListener("click", clickF6)
+a1Tile.addEventListener("click", clickA1)
+b1Tile.addEventListener("click", clickB1)
+c1Tile.addEventListener("click", clickC1)
+d1Tile.addEventListener("click", clickD1)
+e1Tile.addEventListener("click", clickE1)
+f1Tile.addEventListener("click", clickF1)
+a2Tile.addEventListener("click", clickA2)
+b2Tile.addEventListener("click", clickB2)
+c2Tile.addEventListener("click", clickC2)
+d2Tile.addEventListener("click", clickD2)
+e2Tile.addEventListener("click", clickE2)
+f2Tile.addEventListener("click", clickF2)
+a3Tile.addEventListener("click", clickA3)
+b3Tile.addEventListener("click", clickB3)
+c3Tile.addEventListener("click", clickC3)
+d3Tile.addEventListener("click", clickD3)
+e3Tile.addEventListener("click", clickE3)
+f3Tile.addEventListener("click", clickF3)
+a4Tile.addEventListener("click", clickA4)
+b4Tile.addEventListener("click", clickB4)
+c4Tile.addEventListener("click", clickC4)
+d4Tile.addEventListener("click", clickD4)
+e4Tile.addEventListener("click", clickE4)
+f4Tile.addEventListener("click", clickF4)
+a5Tile.addEventListener("click", clickA5)
+b5Tile.addEventListener("click", clickB5)
+c5Tile.addEventListener("click", clickC5)
+d5Tile.addEventListener("click", clickD5)
+e5Tile.addEventListener("click", clickE5)
+f5Tile.addEventListener("click", clickF5)
+a6Tile.addEventListener("click", clickA6)
+b6Tile.addEventListener("click", clickB6)
+c6Tile.addEventListener("click", clickC6)
+d6Tile.addEventListener("click", clickD6)
+e6Tile.addEventListener("click", clickE6)
+f6Tile.addEventListener("click", clickF6)
 
 // player one enter name
 const playerOneName = prompt("Player 1, enter your name:")
