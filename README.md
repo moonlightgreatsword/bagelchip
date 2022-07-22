@@ -8,7 +8,7 @@
 
 ## Wire Frames
 
-https://media.git.generalassemb.ly/user/43194/files/1f564970-ef69-48ba-bcc3-299460512eee![Uploading image.png…]()![1f564970-ef69-48ba-bcc3-299460512eee](https://user-images.githubusercontent.com/105583067/180513620-a086378a-65eb-4f27-9e32-1245315013d0.png)
+![image](https://user-images.githubusercontent.com/105583067/180513620-a086378a-65eb-4f27-9e32-1245315013d0.png)
 
 ## User Stories
 
