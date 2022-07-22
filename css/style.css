@@ -129,5 +129,5 @@ h2 {
 
 #gameboard .eaten {
     background-color: rgb(117, 201, 200);
-    border: none;
+    border: 4px solid rgb(117, 201, 200);
 }
